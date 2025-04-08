@@ -1,0 +1,48 @@
+name: 'Telegram Manual Approval (Bash)'
+description: 'Pause workflow until Telegram approval is received from allowed users.'
+inputs:
+  TELEGRAM_KEY:
+    required: true
+    description: 'Telegram bot token'
+  TELEGRAM_CHAT_ID:
+    required: true
+    description: 'Telegram chat ID'
+  ALLOWED_APPROVER_IDS:
+    required: true
+    description: 'Comma-separated Telegram user IDs'
+  APPROVAL_TEXT:
+    required: false
+    default: 'Please approve:'
+  APPROVAL_BUTTON:
+    required: false
+    default: '✅ Approve'
+  REJECT_BUTTON:
+    required: false
+    default: '❌ Reject'
+  APPROVED_TEXT:
+    required: false
+    default: '✅ Approved'
+  REJECTED_TEXT:
+    required: false
+    default: '❌ Rejected'
+  TIMEOUT_TEXT:
+    required: false
+    default: '⚠️ Timeout'
+  UPDATE_REQUESTS:
+    required: false
+    default: '60'
+runs:
+  using: 'composite'
+  steps:
+    - run: bash ${GITHUB_ACTION_PATH}/main.sh \
+        --TELEGRAM_KEY "${{ inputs.TELEGRAM_KEY }}" \
+        --TELEGRAM_CHAT_ID "${{ inputs.TELEGRAM_CHAT_ID }}" \
+        --ALLOWED_APPROVER_IDS "${{ inputs.ALLOWED_APPROVER_IDS }}" \
+        --APPROVAL_TEXT "${{ inputs.APPROVAL_TEXT }}" \
+        --APPROVAL_BUTTON "${{ inputs.APPROVAL_BUTTON }}" \
+        --REJECT_BUTTON "${{ inputs.REJECT_BUTTON }}" \
+        --APPROVED_TEXT "${{ inputs.APPROVED_TEXT }}" \
+        --REJECTED_TEXT "${{ inputs.REJECTED_TEXT }}" \
+        --TIMEOUT_TEXT "${{ inputs.TIMEOUT_TEXT }}" \
+        --UPDATE_REQUESTS "${{ inputs.UPDATE_REQUESTS }}"
+      shell: bash
