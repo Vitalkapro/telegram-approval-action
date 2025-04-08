@@ -32,17 +32,8 @@ inputs:
     required: false
     default: '60'
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - run: bash ${GITHUB_ACTION_PATH}/main.sh \
-        --TELEGRAM_KEY "${{ inputs.TELEGRAM_KEY }}" \
-        --TELEGRAM_CHAT_ID "${{ inputs.TELEGRAM_CHAT_ID }}" \
-        --ALLOWED_APPROVER_IDS "${{ inputs.ALLOWED_APPROVER_IDS }}" \
-        --APPROVAL_TEXT "${{ inputs.APPROVAL_TEXT }}" \
-        --APPROVAL_BUTTON "${{ inputs.APPROVAL_BUTTON }}" \
-        --REJECT_BUTTON "${{ inputs.REJECT_BUTTON }}" \
-        --APPROVED_TEXT "${{ inputs.APPROVED_TEXT }}" \
-        --REJECTED_TEXT "${{ inputs.REJECTED_TEXT }}" \
-        --TIMEOUT_TEXT "${{ inputs.TIMEOUT_TEXT }}" \
-        --UPDATE_REQUESTS "${{ inputs.UPDATE_REQUESTS }}"
+    - run: |
+        bash ${GITHUB_ACTION_PATH}/main.sh --TELEGRAM_KEY "${{ inputs.TELEGRAM_KEY }}" --TELEGRAM_CHAT_ID "${{ inputs.TELEGRAM_CHAT_ID }}" --ALLOWED_APPROVER_IDS "${{ inputs.ALLOWED_APPROVER_IDS }}" --APPROVAL_TEXT "${{ inputs.APPROVAL_TEXT }}" --APPROVAL_BUTTON "${{ inputs.APPROVAL_BUTTON }}" --REJECT_BUTTON "${{ inputs.REJECT_BUTTON }}" --APPROVED_TEXT "${{ inputs.APPROVED_TEXT }}" --REJECTED_TEXT "${{ inputs.REJECTED_TEXT }}" --TIMEOUT_TEXT "${{ inputs.TIMEOUT_TEXT }}" --UPDATE_REQUESTS "${{ inputs.UPDATE_REQUESTS }}"
       shell: bash
